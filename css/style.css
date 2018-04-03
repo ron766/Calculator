@@ -1,0 +1,127 @@
+/**
+* @author rohan patil
+	@description calculator code
+*/
+
+/*
+	@description div detailing
+*/
+#main	
+{
+	text-align: center;
+	background: linear-gradient(rgb(0,154,193) , rgb(137,136,186));
+	background-repeat: no-repeat;
+	height: 600px;
+	width: 35%;	
+	margin-left: 450px;
+	padding-top: 30px;	
+	box-shadow: 8px 8px 8px rgb(137,136,186);
+}
+
+/*
+	@description Textbox detailing
+*/
+input[type=text]
+{
+	height: 30px;
+	padding: 10px;
+	font-size: 15px;
+	opacity: 0.5;
+	background-image: url('/home/trainee5/Codes/JS/Calc/images/keyboard.svg');
+	background-repeat: no-repeat;
+	background-position: 2px 1px;
+	padding-left: 65px;
+	font-size: 20px;
+}
+
+/*
+	@description on hover behavior of textbox 
+*/
+input[type=text]:hover
+{
+	opacity:0.7;
+	width: 60%;
+}
+
+/*
+	@description Button detailing
+*/
+button
+{
+	height: 30px;
+	width: 100px;
+	font-size: 18px;
+	font-weight: bold;	
+	opacity: 0.5;
+	border-radius: 6px;
+	border: 1px solid black;
+	/*background-color: rgb(61,145,185);*/	
+	background: linear-gradient(rgb(137,136,186), white);
+	font-family: Courier New;
+}
+
+/*
+	@description on hover behavior of button 
+*/
+button:hover
+{
+	opacity: 0.9;
+	text-shadow: 0 0 3px rgb(0,154,193);
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	background: linear-gradient(rgb(137,136,186), rgb(0,154,193));
+	border: 0px;
+}
+
+/*
+	@description on active behavior of button 
+*/
+button:active 
+{
+  background-color: solid black;
+  box-shadow: 0 5px #666;
+  transform: translateY(2px);
+}
+
+/*
+	@description Paragraph detailing
+*/
+p
+{
+	font-size: 20px;
+}
+
+/*
+	@description H1 detailing
+*/
+h1
+{
+		color:#F0F8FF;
+		font-weight: normal;
+}
+
+/*
+	@description clear button property
+*/
+#clr
+{
+	width: 315px;
+}
+
+/*
+	@description on key press hover
+*/
+.hover
+{
+	opacity: 0.9;
+	text-shadow: 0 0 3px rgb(0,154,193);
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	background: linear-gradient(rgb(137,136,186), rgb(0,154,193));
+}
+
+/*
+	@description body detailing
+*/
+body
+{
+	background:linear-gradient(	#ADD8E6 , #F0F8FF);
+}

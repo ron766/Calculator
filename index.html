@@ -1,0 +1,102 @@
+<!--
+* @author rohan patil
+	@description calculator code
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+			@description links for Css, Js & bootstrap
+		-->
+		<link rel="stylesheet" type="text/css" href="/home/trainee5/Codes/JS/Calc/css/style.css">
+		<script src="/home/trainee5/Codes/JS/Calc/javascript/script.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+	<body>
+	<div id="main">
+		<h1>Basic calculator</h1>
+		<!--
+			@description input source
+		-->
+		<input type="text" id="inputNum1" placeholder="       Enter no1" onselect="fetch1()">
+		<br>
+		<br>
+		
+		<br>
+		<br>
+		<!--
+			@description bootstrap button grid
+		-->
+		<div class="row">
+    		<div class="col-sm-6">
+
+      			<div class="btn-group">
+        			<button type="button" id="49" class="btn btn-default" onclick="fetchNos('1')">1</button>
+        			<button type="button" id="50" class="btn btn-default" onclick="fetchNos('2')">2</button>
+        			<button type="button" id="51" class="btn btn-default" onclick="fetchNos('3')">3</button>
+      			</div>
+      			<br>
+
+      			<div class="btn-group">
+        			<button type="button" id="52" class="btn btn-default" onclick="fetchNos('4')">4</button>
+        			<button type="button" id="53" class="btn btn-default" onclick="fetchNos('5')">5</button>
+        			<button type="button" id="54" class="btn btn-default" onclick="fetchNos('6')">6</button>
+      			</div>
+      			<br>
+
+      			<div class="btn-group">
+        			<button type="button" id="55" class="btn btn-default" onclick="fetchNos('7')">7</button>
+        			<button type="button" id="56" class="btn btn-default" onclick="fetchNos('8')">8</button>
+        			<button type="button" id="57" class="btn btn-default" onclick="fetchNos('9')">9</button>
+      			</div>
+      			<br>
+
+      			<div class="btn-group">
+      			    <button type="button" id="46" class="btn btn-default" onclick="fetchNos('.')">.</button>
+        			<button type="button" id="48" class="btn btn-default" onclick="fetchNos('0')">0</button>
+        			<button type="button" id="61" class="btn btn-default" onclick="equalsAns()" >=</button>
+      			</div>
+
+    		</div>
+
+
+    		<!--<div class="col-sm-6">
+    		</div>-->
+  		</div>
+  		<br>
+  		<!--
+			@description to clear input box
+		-->
+		<button type="button" name="clear" id="clr" onclick="clearTxt()">Clear</button>
+		<br>
+		<br>
+
+		<!--
+			@description operation buttons
+		-->
+		<button type="button" name="add" id="43" onclick="fetchKeys('+')">+</button>
+		<button type="button" name="sub" id="45" onclick="fetchKeys('-')">-</button>
+		<button type="button" name="mul" id="42" onclick="fetchKeys('*')">*</button>
+		<button type="button" name="div" id="47" onclick="fetchKeys('/')">/</button>
+	</div>	
+	</body>
+	<script>
+
+document.getElementById("inputNum1").onkeypress = function() {myFunction(event)};
+
+function myFunction(event) {
+	var x = event.which || event.keyCode;
+	
+    document.getElementById(x).setAttribute("class", "hover");
+
+var interval = 400	 // this means it will click every 4 milliseconds
+
+setInterval(function() {
+document.getElementById(x).removeAttribute("class", "hover");
+}, interval)
+
+
+}
+</script>
+</html>

@@ -11,10 +11,9 @@ var exp
 exp = "";
 
 /**
-*	@function fetchNos(val) 
+*	@function fetchNos(val:string) 
 *	@description fetching numbers from textbox
-*	@param {array}
-*	@returns {array} containing numbers 
+*	@param {array} 
 */
 function fetchNos(val) 
 {
@@ -23,10 +22,9 @@ function fetchNos(val)
 }
 
 /**
-*	@function fetchKeys(val)
+*	@function fetchKeys(val:string)
 *	@description fetching from textbox and appending operator with |
 *	@param {array}
-*	@returns {array} containing operators 
 */
 function fetchKeys(val) 
 {
@@ -41,7 +39,7 @@ function fetchKeys(val)
 
 /**
 *	@function equalsAns()
-*	@description splitting array and passing it to the function calculation() 
+*	@description splitting array and passing it to the function calculation(inputNo:array) 
 */
 function  equalsAns() 
 {
@@ -50,9 +48,9 @@ function  equalsAns()
 }
 
 /**
-*	@function calculation(inputNo)
+*	@function calculation(inputNo:array)
 *	@description main calculation code 
-*	@param {array} splitted by pipe
+*	@param {array} split by pipe
 */
 function calculation(inputNo)
 {

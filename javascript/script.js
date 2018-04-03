@@ -4,17 +4,17 @@
 */
 
 
-/*
-	@description declaring input array
+/**
+*	@description declaring input array
 */
 var exp
 exp = "";
 
-/*
-	@function fetchNos(val) 
-	@description fetching numbers from textbox
-	@params {array}
-	@returns {array} containing numbers 
+/**
+*	@function fetchNos(val) 
+*	@description fetching numbers from textbox
+*	@param {array}
+*	@returns {array} containing numbers 
 */
 function fetchNos(val) 
 {
@@ -22,11 +22,11 @@ function fetchNos(val)
 	exp += val;
 }
 
-/*
-	@function fetchKeys(val)
-	@description fetching from textbox and appending operator with |
-	@params {array}
-	@returns {array} containing operators 
+/**
+*	@function fetchKeys(val)
+*	@description fetching from textbox and appending operator with |
+*	@param {array}
+*	@returns {array} containing operators 
 */
 function fetchKeys(val) 
 {
@@ -39,9 +39,9 @@ function fetchKeys(val)
 	exp = exp + "|" + operator + "|";
 }
 
-/*
-	@function equalsAns()
-	@description splitting array and passing it to the function calculation() 
+/**
+*	@function equalsAns()
+*	@description splitting array and passing it to the function calculation() 
 */
 function  equalsAns() 
 {
@@ -49,10 +49,10 @@ function  equalsAns()
 	calculation(inputNo);
 }
 
-/*
-	@function calculation(inputNo)
-	@description main calculation code 
-	@params {array} splitted by pipe
+/**
+*	@function calculation(inputNo)
+*	@description main calculation code 
+*	@param {array} splitted by pipe
 */
 function calculation(inputNo)
 {
@@ -129,9 +129,9 @@ function calculation(inputNo)
 		document.getElementById('inputNum1').value = ans;
 }
 
-/*
-	@function clearTxt() 
-	@description clear input textbox
+/**
+*	@function clearTxt() 
+*	@description clear input textbox
 */
 function clearTxt() 
 {

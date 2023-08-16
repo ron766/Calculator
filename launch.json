@@ -1,8 +1,8 @@
 {
-  redirects: [
+  "redirects": [
     {
-      source: "/",
-      destination: "/redirected"
+      "source": "/",
+      "destination": "/redirected"
     }
   ]
 }

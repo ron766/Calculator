@@ -1,8 +1,9 @@
 {
-  "invalid": [
+  "redirects": [
     {
       "source": "/",
-      "destination": "/redirected"
+      "destination": "/redirected",
+      "statusCode": "301"
     }
   ]
 }

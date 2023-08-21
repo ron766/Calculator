@@ -1,5 +1,5 @@
 {
-  "redirects": [
+  "invalid": [
     {
       "source": "/",
       "destination": "/redirected"

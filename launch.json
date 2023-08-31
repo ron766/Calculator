@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "rewrite-source",
+      "destination": "rewrite-destination"
+    }
+  ]
+}

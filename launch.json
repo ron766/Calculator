@@ -2,9 +2,8 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "/redirected",
-      "statusCode": 302
+      "destination": "https://www.google.com/",
+      "statusCode": 308
     }
   ],
-  // "commentedcode": "bveiughreoisvnl"
 }

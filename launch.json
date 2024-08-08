@@ -1,0 +1,9 @@
+{
+    "redirects": [
+      {
+        "source": "/blogs/:category((?!product-updates|announcements).+)\\?(.*)postId=:postId(.+)",
+        "destination": "/blogs/:category/:postId",
+        "statusCode": 301
+      }
+    ]
+  }

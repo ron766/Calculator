@@ -1,9 +1,24 @@
 {
-    "redirects": [
-      {
-        "source": "/blogs/:category((?!product-updates|announcements).+)\\?(.*)postId=:postId(.+)",
-        "destination": "/blogs/:category/:postId",
-        "statusCode": 301
-      }
-    ]
-  }
+  "redirects": [
+    {
+      "source": "/medications/doxycycline/#s5",
+      "destination": "/search/\\?q=doxycycline/#s5",
+      "statusCode": 301
+    },
+    {
+      "source": "/news/press-room/wedgewood-pharmacy-merges-with-blue-rabbit-to-deliver-exceptional-veterinary-pharmacy-services.html\\?pageindex=1",
+      "destination": "/newsroom/wedgewood-pharmacy-merges-with-blue-rabbit-to-deliver-exceptional-veterinary-pharmacy-services/",
+      "statusCode": 301
+    },
+    {
+      "source": "/news/press-room/wedgewood-pharmacy-and-diamondback-drugs-animal-health-pharmacies-merge-to-provide-greater-benefits-.html\\?pageindex=1",
+      "destination": "/newsroom/wedgewood-pharmacy-and-diamondback-drugs-animal-health-pharmacies-merge-to-provide-greater-benefits/",
+      "statusCode": 301
+    },
+    {
+      "source": "/news/press-room/wedgewood-introduces-blue-rabbit-the-next-generation-online-veterinary-pharmacy-solution-.html\\?pageindex=1",
+      "destination": "/newsroom/wedgewood-introduces-blue-rabbit-the-next-generation-online-veterinary-pharmacy-solution",
+      "statusCode": 301
+    }
+  ]
+}

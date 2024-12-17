@@ -1,6 +1,8 @@
 const cookieName = "my-token";
 
 export default function handler(req, res) {
+  console.log("4 ~ req.body.event", req?.body?.event);
+  console.log("5 ~ req.body", req?.body);
   console.log("Debug log for deploymentIdentifier: DEPLOYMENT_IDENTIFIER");
 
   if (process.env.TEST_VARIABLE !== "TEST_VALUE") {

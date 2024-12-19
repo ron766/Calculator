@@ -3,10 +3,12 @@ export default async function handler(req, res) {
   console.log("3 ~ req.body", req?.body);
   console.log("4 req", req);
 
-  console.log("6 🚀 ~ handler ~ req.url:", req.url)
   // const code = new URL(req.url).searchParams.get('code');
-  const code = new URL(req.url).searchParams.get("code")
-  console.log("8 🚀 ~ code:", code);
+  console.log("6 🚀 ~ handler ~ req.url:", req.url)
+  console.log("8 🚀 ~ handler ~ req.get('host'):", req.get('host'))
+  console.log("9 🚀 ~ handler ~ req.protocol:", req.protocol)
+  const code = new URL(req.protocol+req.get('host')+req.url).searchParams.get("code")
+  console.log("11 🚀 ~ code:", code);
 
   const body = {
     // redirect_uri: OAUTH_REDIRECT_URI,
@@ -33,12 +35,12 @@ export default async function handler(req, res) {
     },
   );
   
-  console.log("35 🚀 ~ handler ~ response:", response)
+  console.log("38 🚀 ~ handler ~ response:", response)
   const responseJSON = await response.json();
-  console.log("37 🚀 ~ handler ~ responseJSON:", responseJSON)
-
+  console.log("40 🚀 ~ handler ~ responseJSON:", responseJSON)
+ 
   if (!response.ok) {
-    console.log('Debug: Body:', JSON.stringify(body));
+    console.log('43 Debug: Body:', JSON.stringify(body));
     console.error(JSON.stringify(responseJSON));
     throw new Error(JSON.stringify(responseJSON));
   }

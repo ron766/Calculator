@@ -27,7 +27,9 @@ export default async function handler(req, res) {
 
   const body = {
     // redirect_uri: OAUTH_REDIRECT_URI,
-    redirect_uri: 'https://calculator.devcontentstackapps.com',
+    // redirect_uri: 'https://calculator.devcontentstackapps.com',
+    redirect_uri: 'https://calculator.devcontentstackapps.com/oauth/callback&scope=user:write',
+
     grant_type: 'authorization_code',
     // client_id: CONTENTSTACK_APP_CLIENT_ID,
     client_id: 'wZ9oZqB7CYMS8eEJ',
@@ -56,7 +58,7 @@ export default async function handler(req, res) {
  
   if (!response.ok) {
     console.log('54 🚀 ~ Debug: Body:', JSON.stringify(body));
-    console.error(JSON.stringify(responseJSON));
+    console.error('59 🚀 ~ ', JSON.stringify(responseJSON));
     throw new Error(JSON.stringify(responseJSON));
   }
 

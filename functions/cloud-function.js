@@ -18,6 +18,8 @@ export default async function handler(req, res) {
     client_secret: 'zeuHMhoSXAQWOzuV1DdQ3GHaNMOsUrGC',
   };
 
+  console.log("21 🚀 ~ handler ~ body:", body)
+
   const response = await fetch(
     // TOKEN_URL,
     'https://dev11-app.csnonprod.com/apps-api/apps/token',
@@ -29,12 +31,17 @@ export default async function handler(req, res) {
       body: JSON.stringify(body),
     },
   );
+  
+  console.log("35 🚀 ~ handler ~ response:", response)
   const responseJSON = await response.json();
+  console.log("37 🚀 ~ handler ~ responseJSON:", responseJSON)
+
   if (!response.ok) {
     console.log('Debug: Body:', JSON.stringify(body));
     console.error(JSON.stringify(responseJSON));
     throw new Error(JSON.stringify(responseJSON));
   }
+
   const { access_token, refresh_token, organization_uid } = responseJSON;
   return {
     accessToken: access_token,

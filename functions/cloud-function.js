@@ -1,7 +1,21 @@
 export default async function handler(req, res) {
   console.log("2 ~ req.body.event", req?.body?.event);
   console.log("3 ~ req.body", req?.body);
-  console.log("4 req", req);
+  console.log("4 req", JSON.stringify({
+    headers: req.headers,
+    method: req.method,
+    url: req.url,
+    httpVersion: req.httpVersion,
+    body: req.body,
+    cookies: req.cookies,
+    path: req.path,
+    protocol: req.protocol,
+    query: req.query,
+    hostname: req.hostname,
+    ip: req.ip,
+    originalUrl: req.originalUrl,
+    params: req.params,
+}));
 
   // const code = new URL(req.url).searchParams.get('code');
   console.log("6 🚀 ~ handler ~ req.url:", req.url)

@@ -5,6 +5,7 @@ export default async function handler(req, res) {
 
   console.log("6 🚀 ~ handler ~ req.url:", req.url)
   const code = new URL(req.url).searchParams.get('code');
+  console.log("8 🚀 ~ code:", code);
 
   const body = {
     // redirect_uri: OAUTH_REDIRECT_URI,

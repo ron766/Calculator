@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   console.log("2 ~ req.body.event", req?.body?.event);
   console.log("3 ~ req.body", req?.body);
-  console.log("Debug log");
+  console.log("4 req", req);
 
   console.log("6 🚀 ~ handler ~ req.url:", req.url)
   // const code = new URL(req.url).searchParams.get('code');

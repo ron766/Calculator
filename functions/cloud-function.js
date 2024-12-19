@@ -1,98 +1,43 @@
-const cookieName = "my-token";
+export default async function handler(req, res) {
+  console.log("2 ~ req.body.event", req?.body?.event);
+  console.log("3 ~ req.body", req?.body);
+  console.log("Debug log");
 
-export default function handler(req, res) {
-  console.log("4 ~ req.body.event", req?.body?.event);
-  console.log("5 ~ req.body", req?.body);
-  console.log("Debug log for deploymentIdentifier: DEPLOYMENT_IDENTIFIER");
+  console.log("6 🚀 ~ handler ~ req.url:", req.url)
+  const code = new URL(req.url).searchParams.get('code');
 
-  if (process.env.TEST_VARIABLE !== "TEST_VALUE") {
-    throw new Error("Env variable not present");
+  const body = {
+    // redirect_uri: OAUTH_REDIRECT_URI,
+    redirect_uri: 'https://calculator.devcontentstackapps.com',
+    grant_type: 'authorization_code',
+    // client_id: CONTENTSTACK_APP_CLIENT_ID,
+    client_id: 'wZ9oZqB7CYMS8eEJ',
+    code,
+    // client_secret: CONTENTSTACK_APP_CLIENT_SECRET,
+    client_secret: 'zeuHMhoSXAQWOzuV1DdQ3GHaNMOsUrGC',
+  };
+
+  const response = await fetch(
+    // TOKEN_URL,
+    'https://dev11-app.csnonprod.com/apps-api/apps/token',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    },
+  );
+  const responseJSON = await response.json();
+  if (!response.ok) {
+    console.log('Debug: Body:', JSON.stringify(body));
+    console.error(JSON.stringify(responseJSON));
+    throw new Error(JSON.stringify(responseJSON));
   }
-
-  if (!req.headers.cookie.includes(cookieName)) {
-    throw new Error("Cookie not present");
-  }
-
-  setResponseHeaders(res);
-
-  res
-    .status(200)
-    .setHeader(
-      "set-cookie",
-      "my-cookie=heres-my-cookie; Path=/; HttpOnly; Secure; SameSite=Lax"
-    )
-    .setHeader(
-      "set-cookie",
-      "my-cookie-2=heres-my-cookie-2; Path=/; HttpOnly; Secure; SameSite=Lax"
-    )
-    .json({
-      deploymentIdentifier: "DEPLOYMENT_IDENTIFIER",
-      host: req.headers["host"],
-    });
-}
-
-const responseHeaders = {
-  // Authentication
-  "www-authenticate": "test-www-authenticate",
-  "proxy-authenticate": "test-proxy-authenticate",
-
-  // Caching
-  "cache-control": "no-store",
-  "clear-site-data": "test-clear-site-data",
-  expires: "test-expires",
-
-  // Client Hints
-  "accept-ch": "test-accept-ch",
-
-  // Conditionals
-  "last-modified": "test-last-modified",
-  etag: "test-etag",
-  "delta-base": "test-delta-base",
-
-  // Content negotiation
-  im: "test-im",
-
-  // CORS
-  "access-control-allow-origin": "*",
-
-  // Message body information
-  "content-language": "test-content-language",
-  "content-location": "test-content-location",
-
-  // Proxies
-  via: "test-via",
-
-  // Redirects
-  location: "test-location",
-
-  // Response context
-  allow: "test-allow",
-
-  // Range requests
-  "content-range": "test-content-range",
-
-  // Security
-  "cross-origin-embedder-policy": "test-cross-origin-embedder-policy",
-  "cross-origin-opener-policy": "test-cross-origin-opener-policy",
-  "cross-origin-resource-policy": "test-cross-origin-resource-policy",
-  "content-security-policy": "test-content-security-policy",
-  "content-security-policy-report-only":
-    "test-content-security-policy-report-only",
-  "expect-ct": "test-expect-ct",
-  "strict-transport-security": "test-strict-transport-security",
-  "x-content-type-options": "test-x-content-type-options",
-  "x-frame-options": "test-x-frame-options",
-
-  // Other
-  link: "test-link",
-  "retry-after": "test-retry-after",
-  "server-timing": "test-server-timing",
-  "x-robots-tag": "test-x-robots-tag",
-  "content-md5": "test-content-md5",
-};
-
-function setResponseHeaders(res) {
-  for (const header in responseHeaders) {
-    res.setHeader(header, responseHeaders[header]);
-  }
+  const { access_token, refresh_token, organization_uid } = responseJSON;
+  return {
+    accessToken: access_token,
+    refreshToken: refresh_token,
+    organizationUid: organization_uid 
+  };
 }

@@ -21,6 +21,10 @@ export default async function handler(req, res) {
   const code = new URL('https://calculator.devcontentstackapps.com'+req.url).searchParams.get("code")
   console.log("22 🚀 ~ code:", code);
 
+  if (!code) {
+    return;
+  }
+
   const body = {
     // redirect_uri: OAUTH_REDIRECT_URI,
     redirect_uri: 'https://calculator.devcontentstackapps.com',

@@ -1,28 +1,25 @@
 export default async function handler(req, res) {
-  console.log("2 ~ req.body.event", req?.body?.event);
-  console.log("3 ~ req.body", req?.body);
-  console.log("4 req", JSON.stringify({
+  console.log("2 req", JSON.stringify({
     headers: req.headers,
     method: req.method,
     url: req.url,
-    httpVersion: req.httpVersion,
     body: req.body,
-    cookies: req.cookies,
+    event: req?.body?.event,
     path: req.path,
     protocol: req.protocol,
     query: req.query,
     hostname: req.hostname,
-    ip: req.ip,
     originalUrl: req.originalUrl,
     params: req.params,
 }));
 
   // const code = new URL(req.url).searchParams.get('code');
-  console.log("6 🚀 ~ handler ~ req.url:", req.url)
-  console.log("8 🚀 ~ handler ~ req.get('host'):", req.get('host'))
-  console.log("9 🚀 ~ handler ~ req.protocol:", req.protocol)
-  const code = new URL(req.protocol+req.get('host')+req.url).searchParams.get("code")
-  console.log("11 🚀 ~ code:", code);
+  // console.log("6 🚀 ~ handler ~ req.url:", req.url)
+  // console.log("8 🚀 ~ handler ~ req.get('host'):", req.get('host'))
+  // console.log("9 🚀 ~ handler ~ req.protocol:", req.protocol)
+  console.log("20 🚀 ~ manual full URL:", 'https://calculator.devcontentstackapps.com'+req.url)
+  const code = new URL('https://calculator.devcontentstackapps.com'+req.url).searchParams.get("code")
+  console.log("22 🚀 ~ code:", code);
 
   const body = {
     // redirect_uri: OAUTH_REDIRECT_URI,
@@ -35,7 +32,7 @@ export default async function handler(req, res) {
     client_secret: 'zeuHMhoSXAQWOzuV1DdQ3GHaNMOsUrGC',
   };
 
-  console.log("21 🚀 ~ handler ~ body:", body)
+  console.log("35 🚀 ~ handler ~ body:", body)
 
   const response = await fetch(
     // TOKEN_URL,
@@ -49,12 +46,12 @@ export default async function handler(req, res) {
     },
   );
   
-  console.log("38 🚀 ~ handler ~ response:", response)
+  console.log("49 🚀 ~ handler ~ response:", response)
   const responseJSON = await response.json();
-  console.log("40 🚀 ~ handler ~ responseJSON:", responseJSON)
+  console.log("51 🚀 ~ handler ~ responseJSON:", responseJSON)
  
   if (!response.ok) {
-    console.log('43 Debug: Body:', JSON.stringify(body));
+    console.log('54 🚀 ~ Debug: Body:', JSON.stringify(body));
     console.error(JSON.stringify(responseJSON));
     throw new Error(JSON.stringify(responseJSON));
   }

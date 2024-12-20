@@ -28,7 +28,8 @@ export default async function handler(req, res) {
   const body = {
     // redirect_uri: OAUTH_REDIRECT_URI,
     // redirect_uri: 'https://calculator.devcontentstackapps.com',
-    redirect_uri: 'https://calculator.devcontentstackapps.com/oauth/callback&scope=user:write',
+    redirect_uri: 'https://calculator.devcontentstackapps.com/cloud-function',
+    // redirect_uri: 'https://calculator.devcontentstackapps.com/oauth/callback&scope=user:write',
 
     grant_type: 'authorization_code',
     // client_id: CONTENTSTACK_APP_CLIENT_ID,

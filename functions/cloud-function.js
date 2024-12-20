@@ -18,7 +18,11 @@ export default async function handler(req, res) {
   // console.log("8 🚀 ~ handler ~ req.get('host'):", req.get('host'))
   // console.log("9 🚀 ~ handler ~ req.protocol:", req.protocol)
   console.log("20 🚀 ~ manual full URL:", 'https://calculator.devcontentstackapps.com'+req.url)
-  const code = new URL('https://calculator.devcontentstackapps.com'+req.url).searchParams.get("code")
+  const fullURL = new URL(
+    'https://calculator.devcontentstackapps.com'+req.url
+  )
+  const code = fullURL.searchParams.get("code");
+  const installation_uid = fullURL.searchParams.get("installation_uid");
   console.log("22 🚀 ~ code:", code);
 
   if (!code) {
@@ -70,5 +74,7 @@ export default async function handler(req, res) {
   //   organizationUid: organization_uid 
   // };
 
-  res.redirect(`https://calculator.devcontentstackapps.com`);
+  res.redirect(
+    `https://dev11-app.csnonprod.com/#!/marketplace/installed-apps/${installation_uid}/configuration?tab=configuration`
+  );
 }

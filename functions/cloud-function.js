@@ -63,10 +63,12 @@ export default async function handler(req, res) {
     throw new Error(JSON.stringify(responseJSON));
   }
 
-  const { access_token, refresh_token, organization_uid } = responseJSON;
-  return {
-    accessToken: access_token,
-    refreshToken: refresh_token,
-    organizationUid: organization_uid 
-  };
+  // const { access_token, refresh_token, organization_uid } = responseJSON;
+  // return {
+  //   accessToken: access_token,
+  //   refreshToken: refresh_token,
+  //   organizationUid: organization_uid 
+  // };
+
+  res.redirect(`https://calculator.devcontentstackapps.com`);
 }

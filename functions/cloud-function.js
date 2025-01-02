@@ -1,6 +1,8 @@
+import fetch from 'node-fetch';
+
 export default async function handler(req, res) {
   try {
-    console.log(" ~ 3 req !222!", JSON.stringify({
+    console.log(" ~ 3 req !333!", JSON.stringify({
       headers: req.headers,
       method: req.method,
       url: req.url,
@@ -91,33 +93,32 @@ export default async function handler(req, res) {
 }
 
 async function getLaunchProjects (access_token, organization_uid) {
-  console.log("🚀 ~ 93 in getLaunchProjects:", access_token, organization_uid)
-  const headers = {
-    'Authorization': `Bearer ${access_token}`,
-    'content-type': 'application/json',
-    'organization_uid': organization_uid,
-  };
-
-  const body = JSON.stringify({
-    operationName: "FetchProjects",
-    variables: {},
-    query: `query GetExternalGitProviders {
-              getExternalGitProviders(query: {}) {
-                name
-              }
-            }`
-  });
-
-  const requestOptions = {
-    method: 'POST',
-    headers: headers,
-    body: body
-  };
-  console.log("🚀 115 ~ getLaunchProjects ~ requestOptions:", requestOptions)
-
-  let response;
   try {
-    response = await fetch(
+    console.log("🚀 ~ 93 in getLaunchProjects:", access_token, organization_uid)
+    const headers = {
+      'Authorization': `Bearer ${access_token}`,
+      'content-type': 'application/json',
+      'organization_uid': organization_uid,
+    };
+
+    const body = JSON.stringify({
+      operationName: "FetchProjects",
+      variables: {},
+      query: `query GetExternalGitProviders {
+                getExternalGitProviders(query: {}) {
+                  name
+                }
+              }`
+    });
+
+    const requestOptions = {
+      method: 'POST',
+      headers: headers,
+      body: body
+    };
+    console.log("🚀 115 ~ getLaunchProjects ~ requestOptions:", requestOptions)
+
+    const response = await fetch(
       // https://eu-launch-api.contentstack.com
       // `https://dev11-app.csnonprod.com/launch-api/manage/graphql`,
       'https://dev-launch-api.csnonprod.com/manage/graphql',

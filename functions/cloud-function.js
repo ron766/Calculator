@@ -67,14 +67,59 @@ export default async function handler(req, res) {
     throw new Error(JSON.stringify(responseJSON));
   }
 
-  // const { access_token, refresh_token, organization_uid } = responseJSON;
+  const { access_token, refresh_token, organization_uid } = responseJSON;
   // return {
   //   accessToken: access_token,
   //   refreshToken: refresh_token,
   //   organizationUid: organization_uid 
   // };
 
-  res.redirect(
-    `https://dev11-app.csnonprod.com/#!/marketplace/installed-apps/${installation_uid}/configuration?tab=configuration`
+  // res.redirect(
+  //   `https://dev11-app.csnonprod.com/#!/marketplace/installed-apps/${installation_uid}/configuration?tab=configuration`
+  // );
+
+
+  getLaunchProjects(access_token, organization_uid)
+}
+
+async function getLaunchProjects (access_token, organization_uid) {
+  const headers = {
+    'Authorization': `Bearer ${access_token}`,
+    'content-type': 'application/json',
+    'organization_uid': organization_uid,
+  };
+
+  const body = JSON.stringify({
+    operationName: "CreateProject",
+    variables: {},
+    query: `query Projects() {
+      Projects(query: {}) {
+        edges {
+          node {
+            name
+          }
+        }
+      }
+    }`
+  });
+
+  const requestOptions = {
+    method: 'POST',
+    headers: headers,
+    body: body
+  };
+
+  const response = await fetch(
+    `https://dev11-app.csnonprod.com/launch-api/manage/graphql`,
+    requestOptions
   );
+
+  if (!response.ok) {
+    throw new Error(`Failed to create project: ${response.statusText}`);
+  }
+
+  const responseBody = await response.json();
+  console.log("🚀 119 ~ getLaunchProjects ~ responseBody:", responseBody)
+
+  return responseBody;
 }

@@ -79,10 +79,11 @@ export default async function handler(req, res) {
   // );
 
 
-  getLaunchProjects(access_token, organization_uid)
+  await getLaunchProjects(access_token, organization_uid)
 }
 
 async function getLaunchProjects (access_token, organization_uid) {
+  console.log("🚀 ~ in getLaunchProjects:", access_token, organization_uid)
   const headers = {
     'Authorization': `Bearer ${access_token}`,
     'content-type': 'application/json',

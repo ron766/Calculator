@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   const { body } = req;
   try {
-    console.log(" ~ 4 req !qqq!", JSON.stringify({
+    console.log(" ~ 4 req !eee!", JSON.stringify({
       headers: req.headers,
       method: req.method,
       url: req.url,
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       params: req.params,
     }));
 
-    const triggerOAuthFlowURL = `${req.headers['x-forwarded-proto']}://${req.headers.host}/apps/${body.data.app_installation.app_uid}/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&response_type=code`
+    const triggerOAuthFlowURL = `https://dev11-app.csnonprod.com/apps/${body.data.app_installation.app_uid}/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&response_type=code`
 
     console.log("🚀 ~ handler ~ triggerOAuthFlowURL:", triggerOAuthFlowURL)
 

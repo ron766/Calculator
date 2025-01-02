@@ -17,13 +17,14 @@ export default async function handler(req, res) {
   // console.log("6 🚀 ~ handler ~ req.url:", req.url)
   // console.log("8 🚀 ~ handler ~ req.get('host'):", req.get('host'))
   // console.log("9 🚀 ~ handler ~ req.protocol:", req.protocol)
-  console.log("20 🚀 ~ manual full URL:", 'https://calculator.devcontentstackapps.com'+req.url)
-  const fullURL = new URL(
-    'https://calculator.devcontentstackapps.com'+req.url
-  )
+  // console.log("20 🚀 ~ manual full URL:", 'https://calculator.devcontentstackapps.com'+req.url)
+  // const fullURL = new URL(
+  //   'https://calculator.devcontentstackapps.com'+req.url
+  // )
+  const fullURL = req.headers['x-forwarded-proto']+"://"+req.headers.host+req.url
   const code = fullURL.searchParams.get("code");
   const installation_uid = fullURL.searchParams.get("installation_uid");
-  console.log("22 🚀 ~ code:", code);
+  console.log("27 🚀 ~ code:", code);
 
   if (!code) {
     return;
@@ -32,15 +33,15 @@ export default async function handler(req, res) {
   const body = {
     // redirect_uri: OAUTH_REDIRECT_URI,
     // redirect_uri: 'https://calculator.devcontentstackapps.com',
-    redirect_uri: 'https://calculator.devcontentstackapps.com/cloud-function',
+    redirect_uri: req.headers['x-forwarded-proto']+"://"+req.headers.host+'/cloud-function',
     // redirect_uri: 'https://calculator.devcontentstackapps.com/oauth/callback&scope=user:write',
 
     grant_type: 'authorization_code',
     // client_id: CONTENTSTACK_APP_CLIENT_ID,
-    client_id: 'wZ9oZqB7CYMS8eEJ',
+    client_id: 'n5JQoAPaLl31QD0_',
     code,
     // client_secret: CONTENTSTACK_APP_CLIENT_SECRET,
-    client_secret: 'zeuHMhoSXAQWOzuV1DdQ3GHaNMOsUrGC',
+    client_secret: 'mGE-ZaWc6RIBPxHXf6aaatyx23tG-NtK',
   };
 
   console.log("35 🚀 ~ handler ~ body:", body)
@@ -80,33 +81,30 @@ export default async function handler(req, res) {
 
 
   try {
-    return await getLaunchProjects(access_token, organization_uid)
+    const res = await getLaunchProjects(access_token, organization_uid)
+    console.log("🚀 ~ 85  handler ~ res:", res)
+    return res;
   } catch (error) {
-    console.log("🚀 85 ~ getLaunchProjects ~ error:", error)
+    console.log("🚀 88 ~ getLaunchProjects ~ error:", error)
   }
 }
 
 async function getLaunchProjects (access_token, organization_uid) {
-  console.log("🚀 ~ in getLaunchProjects:", access_token, organization_uid)
+  console.log("🚀 ~ 93 in getLaunchProjects:", access_token, organization_uid)
   const headers = {
     'Authorization': `Bearer ${access_token}`,
     'content-type': 'application/json',
     'organization_uid': organization_uid,
   };
-  console.log("🚀 92 ~ getLaunchProjects ~ headers:", headers)
 
   const body = JSON.stringify({
     operationName: "FetchProjects",
     variables: {},
-    query: `query Projects {
-      Projects(query: {}) {
-        edges {
-          node {
-            name
-          }
-        }
-      }
-    }`
+    query: `query GetExternalGitProviders {
+              getExternalGitProviders(query: {}) {
+                name
+              }
+            }`
   });
 
   const requestOptions = {
@@ -114,7 +112,7 @@ async function getLaunchProjects (access_token, organization_uid) {
     headers: headers,
     body: body
   };
-  console.log("🚀 113 ~ getLaunchProjects ~ requestOptions:", requestOptions)
+  console.log("🚀 115 ~ getLaunchProjects ~ requestOptions:", requestOptions)
 
   let response;
   try {
@@ -124,19 +122,17 @@ async function getLaunchProjects (access_token, organization_uid) {
       'https://dev-launch-api.csnonprod.com/manage/graphql',
       requestOptions
     );
-    console.log("127  ~ getLaunchProjects ~ response:", response.json())
-    
+
+    if (!response.ok) {
+      console.log("🚀 127 ~ getLaunchProjects ~ response:", response)
+      throw new Error(`Failed to create project: ${response.statusText}`);
+    }
+  
+    const responseBody = await response.json();
+    console.log("🚀 132 ~ getLaunchProjects ~ responseBody:", responseBody)
+  
+    return responseBody;
   } catch (error) {
-    console.log("🚀 130 ~ getLaunchProjects ~ error:", error)
+    console.log("🚀 136 ~ getLaunchProjects ~ error:", error)
   }
-
-  if (!response.ok) {
-    console.log("🚀 134 ~ getLaunchProjects ~ response:", response)
-    throw new Error(`Failed to create project: ${response.statusText}`);
-  }
-
-  const responseBody = await response.json();
-  console.log("🚀 139 ~ getLaunchProjects ~ responseBody:", responseBody)
-
-  return responseBody;
 }

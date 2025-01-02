@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
   try {
-    console.log(" ~ 3 req !333!", JSON.stringify({
+    console.log(" ~ 3 req !444!", JSON.stringify({
       headers: req.headers,
       method: req.method,
       url: req.url,
@@ -125,16 +125,19 @@ async function getLaunchProjects (access_token, organization_uid) {
       requestOptions
     );
 
+    const responseText = await response.text(); // Use .text() instead of .json() to debug malformed JSON
+    console.log("🚀 129 Parsed Response Body:", responseText);
+
     if (!response.ok) {
-      console.log("🚀 127 ~ getLaunchProjects ~ response:", response)
+      console.log("🚀 132 ~ getLaunchProjects ~ response:", response)
       throw new Error(`Failed to create project: ${response.statusText}`);
     }
   
     const responseBody = await response.json();
-    console.log("🚀 132 ~ getLaunchProjects ~ responseBody:", responseBody)
+    console.log("🚀 137 ~ getLaunchProjects ~ responseBody:", responseBody)
   
     return responseBody;
   } catch (error) {
-    console.log("🚀 136 ~ getLaunchProjects ~ error:", error)
+    console.log("🚀 141 ~ getLaunchProjects ~ error:", error)
   }
 }

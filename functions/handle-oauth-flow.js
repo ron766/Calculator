@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
     try {
-      console.log(" ~ 3 req !555!", JSON.stringify({
+      console.log(" ~ 3 req !www!", JSON.stringify({
         headers: req.headers,
         method: req.method,
         url: req.url,

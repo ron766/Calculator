@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  console.log("2 req", JSON.stringify({
+  console.log("2 req !1!", JSON.stringify({
     headers: req.headers,
     method: req.method,
     url: req.url,
@@ -22,9 +22,11 @@ export default async function handler(req, res) {
   //   'https://calculator.devcontentstackapps.com'+req.url
   // )
   const fullURL = req.headers['x-forwarded-proto']+"://"+req.headers.host+req.url
+  console.log("🚀 25 ~ handler ~ fullURL:", fullURL)
   const code = fullURL.searchParams.get("code");
+  console.log("🚀 27 ~ handler ~ code:", code)
   const installation_uid = fullURL.searchParams.get("installation_uid");
-  console.log("27 🚀 ~ code:", code);
+  console.log("🚀 29 ~ handler ~ installation_uid:", installation_uid)
 
   if (!code) {
     return;

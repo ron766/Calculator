@@ -122,14 +122,15 @@ async function getLaunchProjects (access_token, organization_uid) {
     'https://dev-launch-api.csnonprod.com/manage/graphql',
     requestOptions
   );
+  console.log("🚀125  ~ getLaunchProjects ~ response:", response)
 
   if (!response.ok) {
-    console.log("🚀 121 ~ getLaunchProjects ~ response:", response)
+    console.log("🚀 128 ~ getLaunchProjects ~ response:", response)
     throw new Error(`Failed to create project: ${response.statusText}`);
   }
 
   const responseBody = await response.json();
-  console.log("🚀 126 ~ getLaunchProjects ~ responseBody:", responseBody)
+  console.log("🚀 133 ~ getLaunchProjects ~ responseBody:", responseBody)
 
   return responseBody;
 }

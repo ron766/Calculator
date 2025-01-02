@@ -79,7 +79,11 @@ export default async function handler(req, res) {
   // );
 
 
-  return await getLaunchProjects(access_token, organization_uid)
+  try {
+    return await getLaunchProjects(access_token, organization_uid)
+  } catch (error) {
+    console.log("🚀 85 ~ getLaunchProjects ~ error:", error)
+  }
 }
 
 async function getLaunchProjects (access_token, organization_uid) {

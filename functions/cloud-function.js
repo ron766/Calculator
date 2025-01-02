@@ -116,26 +116,27 @@ async function getLaunchProjects (access_token, organization_uid) {
   };
   console.log("🚀 113 ~ getLaunchProjects ~ requestOptions:", requestOptions)
 
+  let response;
   try {
-    const response = await fetch(
+    response = await fetch(
       // https://eu-launch-api.contentstack.com
       // `https://dev11-app.csnonprod.com/launch-api/manage/graphql`,
       'https://dev-launch-api.csnonprod.com/manage/graphql',
       requestOptions
     );
-    console.log("🚀125  ~ getLaunchProjects ~ response:", response.json())
+    console.log("127  ~ getLaunchProjects ~ response:", response.json())
     
   } catch (error) {
-    console.log("🚀 129 ~ getLaunchProjects ~ error:", error)
+    console.log("🚀 130 ~ getLaunchProjects ~ error:", error)
   }
 
   if (!response.ok) {
-    console.log("🚀 133 ~ getLaunchProjects ~ response:", response)
+    console.log("🚀 134 ~ getLaunchProjects ~ response:", response)
     throw new Error(`Failed to create project: ${response.statusText}`);
   }
 
   const responseBody = await response.json();
-  console.log("🚀 138 ~ getLaunchProjects ~ responseBody:", responseBody)
+  console.log("🚀 139 ~ getLaunchProjects ~ responseBody:", responseBody)
 
   return responseBody;
 }

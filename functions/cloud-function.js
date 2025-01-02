@@ -98,7 +98,7 @@ async function getLaunchProjects (access_token, organization_uid) {
   const body = JSON.stringify({
     operationName: "FetchProjects",
     variables: {},
-    query: `query Projects() {
+    query: `query Projects {
       Projects(query: {}) {
         edges {
           node {

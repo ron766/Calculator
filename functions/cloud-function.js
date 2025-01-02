@@ -117,7 +117,9 @@ async function getLaunchProjects (access_token, organization_uid) {
   console.log("🚀 113 ~ getLaunchProjects ~ requestOptions:", requestOptions)
 
   const response = await fetch(
-    `https://dev11-app.csnonprod.com/launch-api/manage/graphql`,
+    // https://eu-launch-api.contentstack.com
+    // `https://dev11-app.csnonprod.com/launch-api/manage/graphql`,
+    'https://dev-launch-api.csnonprod.com/manage/graphql',
     requestOptions
   );
 

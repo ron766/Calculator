@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   const { body } = req;
   try {
-    console.log(" ~ 4 req !eee!", JSON.stringify({
+    console.log(" ~ 4 req !rrr!", JSON.stringify({
       headers: req.headers,
       method: req.method,
       url: req.url,
@@ -17,9 +17,10 @@ export default async function handler(req, res) {
 
     const triggerOAuthFlowURL = `https://dev11-app.csnonprod.com/apps/${body.data.app_installation.app_uid}/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&response_type=code`
 
-    console.log("🚀 ~ handler ~ triggerOAuthFlowURL:", triggerOAuthFlowURL)
+    console.log("🚀 20 ~ handler ~ triggerOAuthFlowURL:", triggerOAuthFlowURL)
 
     if (body.event === "install") {
+      console.log("🚀 23 ~ install if:", triggerOAuthFlowURL)
       res.redirect(triggerOAuthFlowURL);
     }
   } catch (error) {

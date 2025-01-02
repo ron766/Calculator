@@ -42,10 +42,10 @@ export default async function handler(req, res) {
   
       grant_type: 'authorization_code',
       // client_id: CONTENTSTACK_APP_CLIENT_ID,
-      client_id: 'n5JQoAPaLl31QD0_',
+      client_id: 'rm5vrKjHUopyntFo',
       code,
       // client_secret: CONTENTSTACK_APP_CLIENT_SECRET,
-      client_secret: 'mGE-ZaWc6RIBPxHXf6aaatyx23tG-NtK',
+      client_secret: 'bFvs64b42AELmg7rKtH-6NbZDZTtnZQ6',
     };
   
     console.log("49 🚀 ~ handler ~ body:", body)

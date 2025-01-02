@@ -79,7 +79,7 @@ export default async function handler(req, res) {
   // );
 
 
-  await getLaunchProjects(access_token, organization_uid)
+  return await getLaunchProjects(access_token, organization_uid)
 }
 
 async function getLaunchProjects (access_token, organization_uid) {
@@ -89,9 +89,10 @@ async function getLaunchProjects (access_token, organization_uid) {
     'content-type': 'application/json',
     'organization_uid': organization_uid,
   };
+  console.log("🚀 92 ~ getLaunchProjects ~ headers:", headers)
 
   const body = JSON.stringify({
-    operationName: "CreateProject",
+    operationName: "FetchProjects",
     variables: {},
     query: `query Projects() {
       Projects(query: {}) {
@@ -109,6 +110,7 @@ async function getLaunchProjects (access_token, organization_uid) {
     headers: headers,
     body: body
   };
+  console.log("🚀 113 ~ getLaunchProjects ~ requestOptions:", requestOptions)
 
   const response = await fetch(
     `https://dev11-app.csnonprod.com/launch-api/manage/graphql`,
@@ -116,11 +118,12 @@ async function getLaunchProjects (access_token, organization_uid) {
   );
 
   if (!response.ok) {
+    console.log("🚀 121 ~ getLaunchProjects ~ response:", response)
     throw new Error(`Failed to create project: ${response.statusText}`);
   }
 
   const responseBody = await response.json();
-  console.log("🚀 119 ~ getLaunchProjects ~ responseBody:", responseBody)
+  console.log("🚀 126 ~ getLaunchProjects ~ responseBody:", responseBody)
 
   return responseBody;
 }

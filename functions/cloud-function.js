@@ -42,10 +42,10 @@ export default async function handler(req, res) {
   
       grant_type: 'authorization_code',
       // client_id: CONTENTSTACK_APP_CLIENT_ID,
-      client_id: 'rm5vrKjHUopyntFo',
+      client_id: process.env.BITBUCKET_CLOUD_CLIENT_ID,
       code,
       // client_secret: CONTENTSTACK_APP_CLIENT_SECRET,
-      client_secret: 'bFvs64b42AELmg7rKtH-6NbZDZTtnZQ6',
+      client_secret: process.env.BITBUCKET_CLOUD_CLIENT_SECRET,
     };
   
     console.log("49 🚀 ~ handler ~ body:", body)

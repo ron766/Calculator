@@ -105,7 +105,7 @@ async function getLaunchProjects (access_token, organization_uid) {
       operationName: "DeleteExternalGitProvider",
       variables: {},
       query: `mutation DeleteExternalGitProvider {
-                deleteExternalGitProvider({externalGitProvider: {uid: 656471b6beef0bc09004f69a}}) {
+                deleteExternalGitProvider(query: {externalGitProvider: {uid: "656471b6beef0bc09004f69a"}}) {
                   uid
                   name
                 }

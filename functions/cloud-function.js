@@ -102,10 +102,11 @@ async function getLaunchProjects (access_token, organization_uid) {
     };
 
     const body = JSON.stringify({
-      operationName: "GetExternalGitProviders",
+      operationName: "DeleteExternalGitProvider",
       variables: {},
-      query: `query GetExternalGitProviders {
-                getExternalGitProviders(query: {}) {
+      query: `mutation DeleteExternalGitProvider {
+                deleteExternalGitProvider({externalGitProvider: {uid: 656471b6beef0bc09004f69a}}) {
+                  uid
                   name
                 }
               }`

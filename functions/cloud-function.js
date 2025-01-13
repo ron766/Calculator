@@ -102,7 +102,7 @@ async function getLaunchProjects (access_token, organization_uid) {
     };
 
     const body = JSON.stringify({
-      operationName: "FetchProjects",
+      operationName: "GetExternalGitProviders",
       variables: {},
       query: `query GetExternalGitProviders {
                 getExternalGitProviders(query: {}) {

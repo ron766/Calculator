@@ -101,21 +101,41 @@ async function getLaunchProjects (access_token, organization_uid) {
       'organization_uid': organization_uid,
     };
 
-    const body = JSON.stringify({
-      operationName: "DeleteExternalGitProvider",
-      variables: {},
-      query: `mutation DeleteExternalGitProvider {
-                deleteExternalGitProvider({externalGitProvider: {uid: "656471b6beef0bc09004f69a"}}) {
-                  uid
-                  name
-                }
-              }`
-    });
+    // const body = JSON.stringify({
+    //   operationName: "DeleteExternalGitProvider",
+    //   variables: {},
+    //   query: `mutation DeleteExternalGitProvider {
+    //             deleteExternalGitProvider({externalGitProvider: {uid: "656471b6beef0bc09004f69a"}}) {
+    //               uid
+    //               name
+    //             }
+    //           }`
+    // });
+    const mutation = `
+      mutation DeleteExternalGitProvider($externalGitProvider: DeleteExternalGitProviderInput!) {
+        deleteExternalGitProvider(externalGitProvider: $externalGitProvider) {
+          uid
+          name
+        }
+      }
+    `;
+
+    // Variables for the mutation
+    const variables = {
+      externalGitProvider: {
+        uid: "656471b6beef0bc09004f69a", // Replace with your actual UID
+      },
+    };
 
     const requestOptions = {
       method: 'POST',
       headers: headers,
-      body: body
+      // body: body
+      body: JSON.stringify({
+        operationName: "DeleteExternalGitProvider",
+        variables: variables,
+        query: mutation
+      })
     };
     console.log("🚀 115 ~ getLaunchProjects ~ requestOptions:", requestOptions)
 

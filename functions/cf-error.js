@@ -1,5 +1,6 @@
-export default async function handler(req, res) {
-  console.log("4 ~ here");
+// ❌ Crash during initialization (before handler is even registered)
+throw new Error("Intentional startup crash to reproduce CF001");
 
-  throw new Error("Intentional Lambda failure");
+export default function handler(req, res) {
+  res.status(200).send("This will never run");
 }

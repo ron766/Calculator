@@ -1,6 +1,6 @@
-// ❌ Crash during initialization (before handler is even registered)
-throw new Error("Intentional startup crash to reproduce CF001");
+// ❌ Require a module that does not exist
+import nonExistentModule from "./this-file-does-not-exist";
 
 export default function handler(req, res) {
-  res.status(200).send("This will never run");
+  res.status(200).send("Never reached");
 }
